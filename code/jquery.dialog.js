@@ -59,6 +59,7 @@
             opacity: 0.5,
             autoOpen:false,
             isModel:true,
+            isOverlayClosable:true,
             buttons:{},
             beforeOpen:function(){},
             afterClose:function(){}
@@ -181,7 +182,9 @@
                 _api.open();
             }
             $close.click(_api.close);
-            $overlay.click(_api.close);
+            if(options.isOverlayClosable){
+                $overlay.click(_api.close);
+            }
             $window.resize(_api.resize);
             getApi(_api);
         });
