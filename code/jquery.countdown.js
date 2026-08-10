@@ -77,10 +77,10 @@
                 let diff = _end - _start;
                 let format;
                 if (isTime) {
-					format = timeFormat(options.format, time);
-				} else {
-					format = time / options.interval;
-				}
+                    format = timeFormat(options.format, time);
+                } else {
+                    format = time / options.interval;
+                }
                 return {
                     'day': Math.floor(diff / 86400000),
                     'hour': Math.floor(diff % 86400000 / 3600000),
@@ -134,7 +134,7 @@
                     _end = isNaN(options.endtime) ? getTimestamp(options.endtime) : options.endtime;
                 }else{
                     _start = options.starttime*options.interval;
-					_end = options.endtime*options.interval;
+                    _end = options.endtime*options.interval;
                 }
                 isReverse = _start > _end ? true : false;
                 count();
@@ -142,21 +142,21 @@
             _api.setStarttime = function (start) {
                 options.starttime = start;
                 isTime = isNaN(start);
-				if(isTime){
-					_start = options.starttime ? (isNaN(options.starttime) ? getTimestamp(options.starttime) : options.starttime) : Date.now();
-				}else{
-					_start = start*options.interval;
-				}
+                if(isTime){
+                    _start = options.starttime ? (isNaN(options.starttime) ? getTimestamp(options.starttime) : options.starttime) : Date.now();
+                }else{
+                    _start = start*options.interval;
+                }
                 count();
             };
             _api.setEndtime = function (end) {
                 options.endtime = end;
                 isTime = isNaN(end);
-				if(isTime){
+                if(isTime){
                     _end = isNaN(options.endtime) ? getTimestamp(options.endtime) : options.endtime;
                 }else{
-					_end = end*options.interval;
-				}
+                    _end = end*options.interval;
+                }
                 count();
             };
             //初始化
