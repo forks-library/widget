@@ -98,7 +98,7 @@
                         if (data[c] && c != options.province) {
                             options.city = c;
                         }
-                        c = code.substr(-2)!='00' ? code : 0;
+                        c = code.match(/00$/) ? code : 0;
                         if (data[c] && c != options.city) {
                             options.district = c;
                         }

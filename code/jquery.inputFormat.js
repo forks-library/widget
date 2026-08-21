@@ -75,12 +75,12 @@
                     return result;
                 },
                 mobile:function(str){
-                    var temp = (str.replace(/\s/g,'')+'xxxxxxxxxxx').substr(0,11);
+                    var temp = (str.replace(/\s/g,'')+'xxxxxxxxxxx').substring(0,11);
                     var result = temp.trim().replace(/x/g,'').replace(/^(\d{7})/,'$1 ').replace(/^(\d{3})/,'$1 ');
                     if(temp.match(/^1[3|4|5|7|8|x][0-9x]{9}/)){
                         return result;
                     }else{
-                        return result.substr(0,result.length-1);
+                        return result.substring(0,result.length-1);
                     }
                 }
             };

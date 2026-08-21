@@ -143,7 +143,7 @@
         var $body = $('body');
         var $layer = $('<div class="'+options.prefix+'-layer">').appendTo($body);
         var $tool = $('<div class="'+options.prefix+'-tool"></div>').appendTo($layer);
-        var $close = $('<a class="'+options.prefix+'-close" href="javascript:;" title="关闭">X</a>').appendTo($tool);
+        $('<a class="'+options.prefix+'-close" href="javascript:;" title="关闭">X</a>').appendTo($tool);
         var $panel = $('<div class="'+options.prefix+'-panel"></div>').appendTo($layer);
         var $list = $('<ul></ul>').appendTo($panel);
         var $trigger = null;
@@ -238,7 +238,7 @@
             if(index==value.length&&e.keyCode==8){
                 var m = this.value.match(/\[[^\[\]]+\]$/);
                 if(m){
-                    this.value = this.value.substr(0,m.index);
+                    this.value = this.value.substring(0,m.index);
                     return false;
                 }
             }
