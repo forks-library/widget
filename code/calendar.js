@@ -80,20 +80,20 @@
         }
         var _self = this;
         var $this = document.getElementById(id);
-        $this.innerHTML = '<table>\
-            <caption>\
-                <a class="'+options.prefix+'-prevYear" href="javascript:;">&lt;&lt;</a>\
-                <a class="'+options.prefix+'-prevMonth" href="javascript:;">&lt;</a>\
-                <span class="'+options.prefix+'-title">2016年3月</span>\
-                <a class="'+options.prefix+'-nextMonth" href="javascript:;">&gt;</a>\
-                <a class="'+options.prefix+'-nextYear" href="javascript:;">&gt;&gt;</a>\
-                <a class="'+options.prefix+'-back" href="javascript:;">今天</a>\
-            </caption>\
-            <thead>\
-                <tr><th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th></tr>\
-            </thead>\
-            <tbody></tbody>\
-        </table>';
+        $this.innerHTML = `<table>
+            <caption>
+                <a class="${options.prefix}-prevYear" href="javascript:;">&lt;&lt;</a>
+                <a class="${options.prefix}-prevMonth" href="javascript:;">&lt;</a>
+                <span class="${options.prefix}-title">2016年3月</span>
+                <a class="${options.prefix}-nextMonth" href="javascript:;">&gt;</a>
+                <a class="${options.prefix}-nextYear" href="javascript:;">&gt;&gt;</a>
+                <a class="${options.prefix}-back" href="javascript:;">今天</a>
+            </caption>
+            <thead>
+                <tr><th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>`;
         var $tbody = $this.getElementsByTagName('TBODY')[0];
         var $prevYear = getClass(options.prefix+"-prevYear",$this)[0];
         var $prevMonth = getClass(options.prefix+"-prevMonth",$this)[0];
