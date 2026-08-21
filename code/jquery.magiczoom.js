@@ -54,7 +54,6 @@
             'viewSize':300
         };
         var options = $.extend({}, defaults, parameter);
-        var $document = $(document);
         var $body = $('body');
         var imageDownLoad = function(url,callback){
             callback = callback || function(){};

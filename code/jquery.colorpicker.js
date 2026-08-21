@@ -42,14 +42,7 @@
         factory(jQuery);
     }
 }(function ($) {
-    $.fn.colorpicker = function(parameter,getApi) {
-        if(typeof parameter == 'function'){ //重载
-            getApi = parameter;
-            parameter = {};
-        }else{
-            parameter = parameter || {};
-            getApi = getApi||function(){};
-        }
+    $.fn.colorpicker = function(parameter) {
         var defaults = {
             id:'colorpicker',
             size: 'default',
@@ -67,7 +60,6 @@
             var key = +new Date()+','+Math.random();
             $this.data('key',key);
             var $colorpicker = $('#'+options['id']);
-            var _api = {};
             if(!$colorpicker.length){
                 if(options['size']=='small'){
                     $colorpicker = $('<div id="'+options['id']+'">\
