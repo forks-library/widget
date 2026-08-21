@@ -68,7 +68,6 @@
         let $body = $("body");
         return this.each(function() {
             //对象定义
-            let _self = this;
             let $this = $(this);
             let $value = $(`<div class='${options.valueCls}'></div>`).appendTo($this);
             let $startHandle = $(`<div class='${options.handleCls}'></div>`).appendTo($this);
@@ -86,7 +85,6 @@
             let _length = _width/(options.max - options.min); 	//单元宽度
             let _cursor_position = $this.offset().left;			//鼠标位置
             let isMouseDown = '';
-
             // 对值进行兼容校验
             if(options.isRange){
                 if(typeof _value!='object'){
@@ -225,21 +223,6 @@
             getApi(_api);
         });
         //工具函数
-        function stopBubble(e){
-            if (e && e.stopPropagation) {
-                e.stopPropagation();
-            }else if (window.event) {
-                window.event.cancelBubble = true;
-            }
-        }
-        function stopDefault(e) {
-            if ( e && e.preventDefault ){
-                e.preventDefault();
-            }else{
-                 window.event.returnValue = false;
-            }
-            return false;
-        }
         function setSelectable(obj, enabled) {
             if(enabled) {
                 obj.removeAttr("unselectable").removeAttr("onselectstart").css("user-select", "");
