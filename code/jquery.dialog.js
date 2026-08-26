@@ -55,8 +55,7 @@
             content:'',
             title:'',
             top:null,
-            backgroundColor:'#000',
-            opacity: 0.5,
+            backgroundColor:'rgba(0,0,0,0.5)',
             autoOpen:false,
             isModel:true,
             isOverlayClosable:true,
@@ -91,6 +90,7 @@
                     'height': '100%',
                     'width': '100%',
                     'background': options.backgroundColor,
+                    'backdrop-filter': 'blur(10px)',
                     'display': 'none'
                 }).appendTo($this);
             }
@@ -123,7 +123,7 @@
                     if(options.isModel){
                         $overlay.css({
                             'opacity': 0
-                        }).stop().fadeTo(200,options.opacity);
+                        }).stop().fadeTo(200,1);
                     }
                     if(!_isOpen){
                         $container.css("opacity",0).fadeTo(200, 1);
