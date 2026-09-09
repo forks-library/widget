@@ -82,6 +82,8 @@
             var _size = $panels.length;
             var _index = options.activeIndex;
             var _hander = null;
+            var _delay = options.delay;
+            var _fadeAdjusted = false;
             options.triggerType += options.triggerType === "mouse" ? "enter" : "";  //使用mouseenter防止事件冒泡
             //样式
             var reset = function(){
@@ -90,7 +92,10 @@
                 if(options.effect=='fade'){
                     $content.css('position','relative');
                     $panels.css('position','absolute');
-                    options.delay += 500;
+                    if(!_fadeAdjusted){
+                        _delay += 500;
+                        _fadeAdjusted = true;
+                    }
                 }
             };
             //上一个
@@ -128,7 +133,7 @@
             //播放
             _api.start = function(){
                 _api.stop();
-                _hander = setInterval(next,options.delay);
+                _hander = setInterval(next,_delay);
             };
             //选择某标签
             _api.setIndex = function(index){

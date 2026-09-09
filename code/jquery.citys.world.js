@@ -122,7 +122,7 @@
                             }
                         }
                     }
-                    if(options.country||code.match(/^[\dA-z]{6}$/)){
+                    if(options.country){
                         for(var code in data){
                             var prefix = code.replace(/[\dA-z]{6}$/,'000000');
                             if(code!=prefix&&prefix==options.country){

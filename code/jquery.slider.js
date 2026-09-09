@@ -452,7 +452,7 @@
                     $this.append("<ul class='" + options.navCls + "'>" + list_str + "</ul>");
                 }
                 options.triggerType += options.triggerType === "mouse" ? "enter" : "";  //使用mouseenter防止事件冒泡
-                $nav_list = $this.find("."+options.navCls + " > " + options.triggerCondition).bind(options.triggerType, function(e) {
+                $nav_list = $this.find("."+options.navCls + " > " + options.triggerCondition).on(options.triggerType, function(e) {
                     var index = $nav_list.index(this);
                     var status = {
                         index: _index,
@@ -544,8 +544,8 @@
             }
             $lists.find('img').on('load',_.reset);
             $window.resize(function(){ //当窗体大小改变时，重新计算相关参数
-                var time = + new Date();
-                if(time-_time['start']>250&&options.delay<250||options.delay>=250){ //缓存防治连续变化多次触发
+                var time = Date.now();
+                if(time-_time['start']>250){ //缓存防治连续变化多次触发
                     _.reset();
                 }
                 _time['start'] = time;

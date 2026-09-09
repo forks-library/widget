@@ -66,7 +66,7 @@
             var _self = this;
             var $this = $(this);
             if($this.data('widget-type')=='select'){ //如果已调用过，则不进行初始化
-                return false;
+                return true;
             }else{
                 $this.data('widget-type','select');
             }

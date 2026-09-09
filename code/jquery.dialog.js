@@ -73,7 +73,7 @@
             var $container = $('<div class="'+options.prefix+'-container"></div>');
             var $overlay = $();
             var $close = $('<a class="'+options.prefix+'-close" href="javascript:;">x</a>');
-            var $title = $('<h3>'+options.title+'</h3>');
+            var $title = $('<h3>').text(options.title);
             var $wg_head = $('<div class="'+options.prefix+'-head"></div>').append($title).append($close);
             var $wg_body = $('<div class="'+options.prefix+'-body"></div>').append($children);
             var $wg_foot = $('<div class="'+options.prefix+'-foot"></div>');
@@ -109,7 +109,7 @@
                 var i = 1;
                 for(var name in options.buttons){
                     (function(name){
-                        $('<button class="button-'+(i++)+'" type="button">'+name+'</button>').appendTo($wg_foot).click(function(){
+                        $('<button class="button-'+(i++)+'" type="button">').text(name).appendTo($wg_foot).click(function(){
                             options.buttons[name](_api);
                         });
                     })(name);
@@ -185,7 +185,13 @@
             if(options.isOverlayClosable){
                 $overlay.click(_api.close);
             }
-            $window.resize(_api.resize);
+            $window.on('resize', _api.resize);
+            _api.destroy = function(){
+                $window.off('resize', _api.resize);
+                $close.off('click', _api.close);
+                $overlay.off('click', _api.close);
+                $this.remove();
+            };
             getApi(_api);
         });
     };

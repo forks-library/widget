@@ -198,20 +198,24 @@
 
                 // 遇到夸行或跨列单元格的处理
                 var getOuterRange = function (range) {
-                    var getRange = function(){
+                    var getRange = function(target){
+                        var cellList = [];
                         $abledTds.each(function () {
                             var $temp = $(this);
                             var t_fromKey = $temp.data('from');
                             var t_toKey = $temp.data('to');
                             var t_from = t_fromKey.split(':').map(function (value) { return +value; });
                             var t_to = t_toKey.split(':').map(function (value) { return +value; });
-                            if (isInRange({ from: t_from, to: t_to }, range)) {
+                            if (isInRange({ from: t_from, to: t_to }, target)) {
                                 cellList.push({
                                     'from': t_from,
                                     'to': t_to,
                                 });
                             }
                         });
+                        if(!cellList.length){
+                            return target;
+                        }
                         var outer_from = [Math.min.apply(null, cellList.map(function (item) {
                             return Math.min(item['from'][0],item['to'][0]);
                         })), Math.min.apply(null, cellList.map(function (item) {
@@ -227,11 +231,11 @@
                             to: outer_to
                         };
                     };
-                    var temp_range = JSON.parse(JSON.stringify(selected_range));
+                    var temp_range = JSON.parse(JSON.stringify(range));
                     var outer_range = getRange(temp_range);
                     while (outer_range['from'][0] != temp_range['from'][0] || outer_range['from'][1] != temp_range['from'][1] || outer_range['to'][0] != temp_range['to'][0] || outer_range['to'][1] != temp_range['to'][1]) {
                         temp_range = outer_range;
-                        outer_range = getRange(outer_range);
+                        outer_range = getRange(temp_range);
                     }
                     return outer_range;
                 };

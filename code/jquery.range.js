@@ -137,7 +137,7 @@
                 });
             };
             _api.setValue = function(value){
-                _value = value||_value;
+                _value = typeof value=='undefined'? _value : value;
                 formatValue();
                 options.onSlide({event:{},value:_value,obj:$this});
             };
@@ -187,7 +187,7 @@
                 _cursor_position = pageX-_offset-$endHandle.position().left;
                 setSelectable($body,false);
             });
-            $document.on('mousemove touchmove',function(e){
+            const onDocumentMove = function(e){
                 if(isMouseDown){
                     const pageX = e.type=='mousemove'?e.pageX:e.changedTouches[0].pageX;
                     let move = pageX - _offset;
@@ -209,15 +209,26 @@
                     formatValue();
                     options.onSlide({event:e,value:_value,obj:$this});
                 }
-            }).on('mouseup touchend',function(e){
+            };
+            const onDocumentEnd = function(e){
                 if(isMouseDown){
                     isMouseDown = '';
                     setSelectable($body,true);
                     formatValue();
                     options.onChange({event:e,value:_value,obj:$this});
                 }
-            });
-            $window.on('resize',_api.resize);
+            };
+            $document.on('mousemove touchmove',onDocumentMove).on('mouseup touchend',onDocumentEnd);
+            _api.destroy = function(){
+                $document.off('mousemove touchmove',onDocumentMove).off('mouseup touchend',onDocumentEnd);
+                $window.off('resize',_api.resize);
+                $this.off('mouseup touchend');
+                $startHandle.off('mousedown touchstart');
+                $endHandle.off('mousedown touchstart');
+                $value.remove();
+                $startHandle.remove();
+                $endHandle.remove();
+            };
             //初始化
             _api.setValue(_value);
             getApi(_api);

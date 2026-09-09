@@ -321,7 +321,7 @@
                         }else{
                             _range.push(day);
                             _range.sort(function(a,b){
-                                return a['code']>b['code'];
+                                return a['code']>b['code']?1:-1;
                             });
                             format(_data);
                             options.onSelect(_range);

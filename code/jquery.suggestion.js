@@ -82,7 +82,10 @@
             var _api = {};
             var _ = this;
             var $this = $(this);
-            var $form = $this.parents('form')||$this.parent();
+            var $form = $this.parents('form');
+            if(!$form.length){
+                $form = $this.parent();
+            }
             var $box = $this.parent();
             var $suggestion = $("<div class='"+options.suggestionCls+"'><ul></ul></div>").appendTo($box);
             var $list = $suggestion.find('ul');
@@ -238,7 +241,7 @@
                             if(options.beforeSend(options.parameter)!=false){
                                 var param = {
                                     type:'get',
-                                    async: false,
+                                    async: true,
                                     url :options.url,
                                     data:options.parameter,
                                     dataType:options.dataType,

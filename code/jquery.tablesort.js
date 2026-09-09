@@ -97,10 +97,9 @@
                 var $bd_tbody = $table.find('tbody');
                 $bd_tbody.find('td').removeClass(options.activeCls).filter(':nth-child('+(index+1)+')').addClass(options.activeCls);
                 var $items = $bd_tbody.find('tr');
-                var $temps = $items.clone();
                 var list = $.map($items,function(item,i){
                     var $item = $(item);
-                    var value = $item.find('td').eq(index).attr('data-value')||0;
+                    var value = $item.find('td').eq(index).attr('data-value')||$item.find('td').eq(index).text().trim();
                     return {
                         'index':i,
                         'value':value
@@ -133,11 +132,9 @@
                         }
                     });
                 }
-                $bd_tbody.append($temps);
-                $temps.each(function(index){
-                    var $this = $(this);
-                    var $temp = $items.eq(list[index]['index']);
-                    $this.replaceWith($temp);
+                $items.detach();
++               list.forEach(function(item){
++                    $bd_tbody.append($items.eq(item['index']));
                 });
             };
             $table.on('click','thead th.'+options.sortCls,function(){

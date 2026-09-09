@@ -105,7 +105,7 @@
                     _api.select(options.activeIndex,false);
                 }
             }
-            $triggers.bind(options.triggerType, function(e) { //事件绑定
+            $triggers.on(options.triggerType, function(e) { //事件绑定
                 var i = $triggers.index($(this));
                 var status = {
                     target:$this,
