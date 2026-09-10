@@ -133,8 +133,8 @@
                     });
                 }
                 $items.detach();
-+               list.forEach(function(item){
-+                    $bd_tbody.append($items.eq(item['index']));
+                list.forEach(function(item){
+                    $bd_tbody.append($items.eq(item['index']));
                 });
             };
             $table.on('click','thead th.'+options.sortCls,function(){
